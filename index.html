@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>World Countries Data</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+	<link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="grid grid-rows-[auto_1fr] h-screen">
+	<header id="countries" class="text-center grid gap-2 bg-light-grey py-3">
+		<h2 class="text-primary text-5xl font-semibold">World Countries Data</h2>
+		<p class="subtitle"></p>
+	</header>
+	<main class="h-full">
+
+		<div class="wrapper h-full grid grid-rows-[auto_1fr]">
+			<div class="bg-white pt-3 pb-2 grid gap-2">
+				<div class="graph-buttons flex items-center justify-center gap-2">
+					<button data-btn="population" class="population btn">Population</button>
+					<button data-btn="languages" class="languages btn">Languages</button>
+				</div>
+				<h4 class="graph-title text-center"></h4>
+			</div>
+			<div class="graphs bg-light-grey py-6 h-full">
+				<div class="graph-wrapper w-4/5 mx-auto grid gap-1" id="stat">
+					
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="./data/countries_data.js"></script>
+	<script src="./scripts/main.js"></script>
+
+</body>
+
+</html>

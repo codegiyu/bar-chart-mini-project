@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer utilities {
+    .btn {
+        @apply bg-primary border-2 border-primary uppercase py-2 px-4 rounded-sm active:scale-95 hover:scale-105 hover:bg-primary/75;
+    }
+    
+    .btn.active {
+        @apply text-white;
+    }
+
+    .bar {
+        @apply h-10 bg-primary rounded-sm transition-all duration-500 ease-in-out;
+    }
+
+    .graph-line {
+        @apply w-full grid grid-cols-[90px_1fr_20px] gap-5 items-center;
+    }
+
+    .menubox {
+        @apply w-full aspect-[1] pt-4 pb-2 grid px-10 bg-white rounded-lg;
+    }
+
+    .extra-info {
+        max-height: 0;
+        height: auto;
+        overflow: hidden;
+        padding-block: 0;
+        transition: all 500ms linear;
+    }
+
+    .menubox:hover img {
+        animation: rotate 3s linear infinite;
+    }
+
+    .menubox:hover .extra-info {
+        max-height: unset;
+        padding-block: 8px;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
