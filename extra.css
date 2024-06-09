@@ -1,8 +1,8 @@
 .menubox {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 0;
+    gap: 0; */
     position: relative;
     z-index: 1;
     flex: none;
@@ -11,22 +11,22 @@
 .menubox img {
     transition: all 300ms linear;
     position: absolute;
-    top: 16px;
+    /* top: 16px; */
     left: 40px;
-    width: calc(100% - 80px);
+    /* width: calc(100% - 80px); */
     z-index: 2;
 }
 
 .menubox .dummy {
-    width: 100%;
+    /* width: 100%; */
     aspect-ratio: 1;
     transition: all 300ms linear;
 }
 
-.menubox:hover .dummy {
+/* .menubox:hover .dummy {
     width: 50%;
 }
 
 .menubox:hover img {
     top: -30%;
-}
+} */
