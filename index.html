@@ -14,23 +14,99 @@
 	<header id="countries" class="text-center grid gap-2 bg-light-grey py-3">
 		<h2 class="text-primary text-5xl font-semibold">World Countries Data</h2>
 		<p class="subtitle"></p>
+		<p class="search-summary"></p>
 	</header>
 	<main class="h-full">
-
-		<div class="wrapper h-full grid grid-rows-[auto_1fr]">
-			<div class="bg-white pt-3 pb-2 grid gap-2">
+		<section>
+			<div class="search-header w-full bg-white py-5 flex flex-col gap-8 justify-center px-4">
+				<div class="w-full flex justify-center">
+					<input 
+						type="text" 
+						class="search w-full max-w-[800px] border border-gray-600 rounded-full py-3 px-4"
+						placeholder="Search countries by name, city and languages"
+					/>
+				</div>
+				<div class="sort-btn-wrap flex flex-col lg:flex-row gap-2 items-center w-full justify-center">
+					<div class="flex gap-3">
+						<button class="btn sort-btn">
+							<span class="btn-text" data-sort="up">Name</span>
+						</button>
+						<button class="btn sort-btn">
+							<span class="btn-text" data-sort="down">Capital</span>
+						</button>
+						<button class="btn sort-btn">
+							<span class="btn-text" data-sort="">Population</span>
+						</button>
+					</div>
+					<span class="sort-icon">
+						<img src="./assets/chart.svg" class="h-12" />
+					</span>
+				</div>
+			</div>
+		</section>
+		<section class="bg-light-grey py-5 px-4 lg:px-24">
+			<div class="countries-wrap grid lg:grid-cols-7 gap-x-3 gap-y-2">
+				<div class="country-card w-full h-full bg-white py-4 px-4">
+					<img src="https://flagcdn.com/ae.svg" alt="" class="w-3/4 mx-auto">
+					<p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">Swaziland</p>
+					<div class="grid gap-[2px]">
+						<p class="text-base leading-4 text-gray-400">Capital: Lagos</p>
+						<p class="text-base leading-4 text-gray-400">Language: English</p>
+						<p class="text-base leading-4 text-gray-400">Population: 20,948,120</p>
+					</div>
+				</div>
+				<div class="country-card w-full h-full bg-white py-4 px-4">
+					<img src="https://flagcdn.com/ae.svg" alt="" class="w-3/4 mx-auto">
+					<p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">Swaziland</p>
+					<div class="grid gap-[2px]">
+						<p class="text-base leading-4 text-gray-400">Capital: Lagos</p>
+						<p class="text-base leading-4 text-gray-400">Language: English</p>
+						<p class="text-base leading-4 text-gray-400">Population: 20,948,120</p>
+					</div>
+				</div>
+				<div class="country-card w-full h-full bg-white py-4 px-4">
+					<img src="https://flagcdn.com/ae.svg" alt="" class="w-3/4 mx-auto">
+					<p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">Swaziland</p>
+					<div class="grid gap-[2px]">
+						<p class="text-base leading-4 text-gray-400">Capital: Lagos</p>
+						<p class="text-base leading-4 text-gray-400">Language: English</p>
+						<p class="text-base leading-4 text-gray-400">Population: 20,948,120</p>
+					</div>
+				</div>
+				<div class="country-card w-full h-full bg-white py-4 px-4">
+					<img src="https://flagcdn.com/ae.svg" alt="" class="w-3/4 mx-auto">
+					<p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">Swaziland</p>
+					<div class="grid gap-[2px]">
+						<p class="text-base leading-4 text-gray-400">Capital: Lagos</p>
+						<p class="text-base leading-4 text-gray-400">Language: English</p>
+						<p class="text-base leading-4 text-gray-400">Population: 20,948,120</p>
+					</div>
+				</div>
+				<div class="country-card w-full h-full bg-white py-4 px-4">
+					<img src="https://flagcdn.com/ae.svg" alt="" class="w-3/4 mx-auto">
+					<p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">Swaziland</p>
+					<div class="grid gap-[2px]">
+						<p class="text-base leading-4 text-gray-400">Capital: Lagos</p>
+						<p class="text-base leading-4 text-gray-400">Languages: English, Tamil, Yoruba, Mandarin, Greek</p>
+						<p class="text-base leading-4 text-gray-400">Population: 20,948,120</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="wrapper h-full grid grid-rows-[auto_1fr]">
+			<section class="bg-white pt-3 pb-2 grid gap-2">
 				<div class="graph-buttons flex items-center justify-center gap-2">
 					<button data-btn="population" class="population btn">Population</button>
 					<button data-btn="languages" class="languages btn">Languages</button>
 				</div>
 				<h4 class="graph-title text-center"></h4>
-			</div>
-			<div class="graphs bg-light-grey py-6 h-full">
+			</section>
+			<section class="graphs bg-light-grey py-6 h-full">
 				<div class="graph-wrapper w-4/5 mx-auto grid gap-1" id="stat">
 					
 				</div>
-			</div>
-		</div>
+			</section>
+		</section>
 	</main>
 
 	<script src="./data/countries_data.js"></script>

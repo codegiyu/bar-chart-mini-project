@@ -698,6 +698,14 @@ video {
   margin-top: 2rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -809,6 +817,10 @@ video {
   height: 100vh;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -836,6 +848,18 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.max-w-\[800px\] {
+  max-width: 800px;
 }
 
 .flex-shrink {
@@ -1368,6 +1392,36 @@ video {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-\[2px\] {
+  gap: 2px;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
+
+.gap-x-3 {
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+}
+
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -1816,6 +1870,11 @@ video {
   border-style: none;
 }
 
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
@@ -1966,9 +2025,29 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-2 {
@@ -2045,12 +2124,31 @@ video {
   line-height: 1.75rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
 
 .font-semibold {
   font-weight: 600;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .uppercase {
@@ -2121,6 +2219,10 @@ video {
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
 
+.leading-4 {
+  line-height: 1rem;
+}
+
 .text-\[\#336699\]\/\[\.35\] {
   color: rgb(51 102 153 / .35);
 }
@@ -2138,6 +2240,16 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2537,6 +2649,42 @@ html {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.sort-btn {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  border-radius: 9999px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.btn-text {
+  position: relative;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.btn-text[data-sort=up]::after {
+  content: url('./assets/arrow.svg');
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+}
+
+.btn-text[data-sort=down]::after {
+  content: url('./assets/arrow.svg');
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
 .btn.active {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2559,6 +2707,8 @@ html {
   align-items: center;
   gap: 1.25rem;
 }
+
+/* BURGER STORE */
 
 .box-container {
   display: grid;
@@ -2770,6 +2920,25 @@ html {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 }
 
