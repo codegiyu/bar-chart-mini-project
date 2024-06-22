@@ -1,24 +1,37 @@
 console.log({countries: countries_data});
 
+const body = document.body;
 const subtitleEl = document.querySelector(".subtitle");
+const sortBtns = document.querySelectorAll(".btn.sort-btn");
+const goToGraphBtn = document.querySelector(".go-to-graph-btn");
+const countriesWrapper = document.querySelector(".countries-wrap");
+const graphSection = document.querySelector(".graph-section");
 const languagesBtn = document.querySelector(".languages");
 const populationBtn = document.querySelector(".population");
 const graphTitleEl = document.querySelector(".graph-title");
-const btns = document.querySelectorAll(".btn");
+const graphBtns = document.querySelectorAll(".btn.graph-btn");
 const graphWrapper = document.querySelector(".graph-wrapper");
 
-subtitleEl.innerHTML = `Currently, we have ${countries_data.length} countries`;
-showLanguages();
-setTimeout(() => {console.log("JoJo")}, 4000);
-setTimeout(() => {console.log("JoJo")}, 6000);
+let filteredCountries = [...countries_data];
 
-btns.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        const type = e.target.getAttribute("data-btn");
-        console.log({type});
-        type === "languages" ? showLanguages() : showPopulation();
+body.onload = () => {
+    subtitleEl.innerHTML = `Currently, we have ${countries_data.length} countries`;
+    displayCountryCards(filteredCountries);
+    showLanguages();
+
+    sortBtns.forEach(btn => {
+        btn.addEventListener("click", sortCountries);
+    });
+    goToGraphBtn.addEventListener("click", goToGraph);
+    
+    graphBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const type = e.target.getAttribute("data-btn");
+            console.log({type});
+            type === "languages" ? showLanguages() : showPopulation();
+        })
     })
-})
+}
 
 function showLanguages() {
     populationBtn.classList.remove("active");
@@ -41,7 +54,7 @@ function showPopulation() {
 }
 
 function countLanguages() {
-    const languages = countries_data.map(item => item.languages).flat();
+    const languages = filteredCountries.map(item => item.languages).flat();
     let count = {};
   
     for (const language of languages) {
@@ -68,13 +81,13 @@ function countPopulation() {
         "Russian Federation": "Russia"
     }
 
-    const sortedPopulation = countries_data
+    const sortedPopulation = filteredCountries
     .map(item => ({
         name: replacements[item.name] || item.name,
         population: item.population
     })).sort((a, b) => b.population - a.population);
 
-    const totalPopulation = sortedPopulation.reduce((acc, curr) => acc + curr.population, 0);
+    const totalPopulation = countries_data.reduce((acc, curr) => acc + curr.population, 0);
 
     const valuesArr = sortedPopulation.map(item => ({
         title: item.name,
@@ -119,4 +132,55 @@ function getMaxScale(num) {
   const digits = String(num).length;
   return 10 ** digits;
 }
-// {title: "", width: 10, value: 3878373}
+
+function displayCountryCards(arr) {
+    let cardList = "";
+
+    for (let country of arr) {
+        cardList += `
+            <div class="country-card w-full h-full bg-white py-4 px-4">
+                <img src="${country.flag}" alt="" class="w-3/4 mx-auto">
+                <p class="country-name uppercase text-primary text-base font-semibold text-center mt-7 mb-4">${country.name}</p>
+                <div class="grid gap-[2px]">
+                    <p class="text-base leading-4 text-gray-400">Capital: ${country.capital}</p>
+                    <p class="text-base leading-4 text-gray-400">Language: ${country.languages}</p>
+                    <p class="text-base leading-4 text-gray-400">Population: ${country.population}</p>
+                </div>
+            </div>`
+    }
+
+    countriesWrapper.innerHTML = cardList;
+}
+
+function goToGraph() {
+    graphSection.scrollIntoView(false, {behavior: "instant"});
+}
+
+function sortCountries(e) {
+    const btn = e.currentTarget;
+    const btnName = btn.dataset.btnName;
+    const sortStatus = btn.querySelector(".btn-text").dataset.sort;
+
+    sortBtns.forEach(btn => {
+        btn.querySelector(".btn-text").dataset.sort = "";
+    });
+
+    const newSortStatus = sortStatus === "up" ? "down" : "up";
+    btn.querySelector(".btn-text").dataset.sort = newSortStatus;
+
+    filteredCountries.sort((a, b) => {
+        if (newSortStatus === "up" && btnName === "population") {
+            return a[btnName] - b[btnName];
+        } else if (newSortStatus === "down" && btnName === "population") {
+            return b[btnName] - a[btnName];
+        } else if (newSortStatus === "up") {
+            return (a[btnName] || "").localeCompare((b[btnName] || ""));
+        } else {
+            return (b[btnName] || "").localeCompare((a[btnName] || ""));
+        }
+    });
+
+    displayCountryCards(filteredCountries);
+
+    console.log({ btnName, sortStatus, newSortStatus, filteredCountries });
+}
