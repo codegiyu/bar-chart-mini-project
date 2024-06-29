@@ -13,7 +13,7 @@
         hover:scale-105 hover:bg-primary/75;
     }
     
-    .sort-btn {
+    .sort-btn, .search-btn {
         @apply py-3 px-2 w-[200px] flex justify-center rounded-full;
     }
 

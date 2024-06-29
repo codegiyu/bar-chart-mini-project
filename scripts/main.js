@@ -3,6 +3,7 @@ console.log({countries: countries_data});
 const body = document.body;
 const subtitleEl = document.querySelector(".subtitle");
 const searchSummaryEl = document.querySelector(".search-summary");
+const searchBtns = document.querySelectorAll(".btn.search-btn");
 const searchInput = document.querySelector(".search-input");
 const sortBtns = document.querySelectorAll(".btn.sort-btn");
 const goToGraphBtn = document.querySelector(".go-to-graph-btn");
@@ -17,11 +18,16 @@ const graphWrapper = document.querySelector(".graph-wrapper");
 let filteredCountries = [...countries_data];
 let sortType = "";
 let sortDirection = "";
+let searchType = "anywhere";
 
 body.onload = () => {
     subtitleEl.innerHTML = `Currently, we have ${countries_data.length} countries`;
     displayCountryCards(filteredCountries);
     showLanguages();
+
+    searchBtns.forEach(btn => {
+        btn.addEventListener("click", changeSearchType);
+    });
 
     searchInput.addEventListener("input", filterCountries);
 
@@ -40,8 +46,7 @@ body.onload = () => {
 }
 
 function showLanguages() {
-    populationBtn.classList.remove("active");
-    languagesBtn.classList.add("active");
+    makeElementActiveInGroup(".btn.graph-btn", ".btn[data-btn=languages]");
     graphTitleEl.innerHTML = "10 most spoken languages in the world";
 
     const sortedLanguages = countLanguages().slice(0, 10);
@@ -50,8 +55,7 @@ function showLanguages() {
 }
 
 function showPopulation() {
-    languagesBtn.classList.remove("active");
-    populationBtn.classList.add("active");
+    makeElementActiveInGroup(".btn.graph-btn", ".btn[data-btn=population]");
     graphTitleEl.innerHTML = "10 most populated countries in the world";
 
     const sortedPopulation = countPopulation().slice(0, 11);
@@ -199,14 +203,20 @@ function sortCountries() {
     displayCountryCards(filteredCountries);
 }
 
-function filterCountries(e) {
-    const value = e.target.value.toLowerCase();
+function filterCountries() {
+    const value = searchInput.value.toLowerCase();
 
-    const filtered = countries_data.filter(country => {
-        return country.name.toLowerCase().includes(value) 
-        || country.capital?.toLowerCase().includes(value) 
-        || country.languages.some(language => language.toLowerCase().includes(value))
-    });
+    const filtered = searchType === "anywhere" 
+        ?   countries_data.filter(country => {
+                return country.name.toLowerCase().includes(value) 
+                || country.capital?.toLowerCase().includes(value) 
+                || country.languages.some(language => language.toLowerCase().includes(value))
+            })
+        :   countries_data.filter(country => {
+                return country.name.toLowerCase().startsWith(value) 
+                || country.capital?.toLowerCase().startsWith(value) 
+                || country.languages.some(language => language.toLowerCase().startsWith(value))
+            });
 
     filteredCountries = filtered;
 
@@ -219,4 +229,29 @@ function filterCountries(e) {
 
     const activeGraphBtnType = document.querySelector(".graph-btn.active").dataset.btn;
     activeGraphBtnType === "languages" ? showLanguages() : showPopulation();
+}
+
+function changeSearchType(e) {
+    const btnType = e.target.dataset.btnType;
+    if (searchType === btnType) {
+        return;
+    }
+
+    makeElementActiveInGroup(".btn.search-btn", `.btn[data-btn-type=${btnType}]`);
+
+    searchType = btnType;
+
+    filterCountries();
+}
+
+function makeElementActiveInGroup(groupDescriptor, elDescriptor, className = "active") {
+    const group = document.querySelectorAll(groupDescriptor);
+    const el = document.querySelector(elDescriptor);
+
+    if (!group || !el) {
+        return;
+    }
+
+    group.forEach(elem => elem.classList.remove(className));
+    el.classList.add(className);
 }

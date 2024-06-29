@@ -19,6 +19,16 @@
 	<main class="h-full">
 		<section>
 			<div class="search-header w-full bg-white py-5 flex flex-col gap-8 justify-center px-4">
+				<div class="search-btn-wrap flex flex-col lg:flex-row gap-2 items-center w-full justify-center">
+					<div class="flex gap-3">
+						<button class="btn search-btn" data-btn-type="start">
+							Start of word
+						</button>
+						<button class="btn search-btn active" data-btn-type="anywhere">
+							Anywhere in word
+						</button>
+					</div>
+				</div>
 				<div class="w-full flex justify-center">
 					<input 
 						type="text" 
